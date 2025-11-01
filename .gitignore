@@ -199,14 +199,6 @@ $RECYCLE.BIN/
 # Linux
 *~
 
-# Project-specific files
-# Generated data files
-input/
-output/
-data/
-*.csv
-*.html
-
 # Log files
 *.log
 
@@ -227,7 +219,6 @@ tmp/
 # .env
 
 # Generated reports and charts
-report.html
 *.png
 *.jpg
 *.jpeg
