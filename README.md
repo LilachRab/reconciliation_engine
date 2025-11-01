@@ -55,7 +55,7 @@ Run the entire workflow from data generation to report creation:
 
 ```powershell
 # Navigate to the project directory
-cd insurance-reconciliation
+cd reconciliation_engine
 
 # Run the complete workflow
 python src/main.py
@@ -66,24 +66,6 @@ This will:
 1. Generate 200 synthetic patients with associated claims and invoices
 2. Perform reconciliation analysis
 3. Create a comprehensive HTML report
-
-### Individual Components
-
-You can also run components separately:
-
-#### Data Generation Only
-
-```python
-# From the src/ directory
-python generate_input_data.py
-```
-
-#### Reconciliation and Reporting Only
-
-```python
-# From the src/ directory
-python -c "from reconciliation_engine import run_reconciliation_engine; run_reconciliation_engine('output/report.html')"
-```
 
 ### Configuration
 
@@ -163,7 +145,6 @@ The system generates `output/report.html`, a comprehensive interactive report co
 #### 1. Header Section
 
 -   Project title and description
--   Professional styling with gradient background
 
 #### 2. Summary Cards
 
@@ -179,21 +160,11 @@ A row of 5 informational cards displaying:
 
 -   Interactive pie chart showing the percentage breakdown of claim statuses
 -   Color-coded: Green (Balanced), Red (Overpaid), Yellow (Underpaid)
--   Embedded as base64 image for offline viewing
 
 #### 4. Detailed Data Table
 
 -   **Filterable**: Click buttons to show All, Balanced, Overpaid, or Underpaid claims
 -   **Paginated**: 20 records per page with navigation controls
--   **Sortable columns**: Claim ID, Patient ID, amounts, and reconciliation status
--   **Responsive design**: Works on desktop and mobile devices
-
-#### 5. Interactive Features
-
--   **Status Filtering**: Filter table by reconciliation status
--   **Pagination Controls**: Navigate through large datasets
--   **Hover Effects**: Enhanced user experience with visual feedback
--   **Mobile Responsive**: Adapts to different screen sizes
 
 ### Reconciliation Logic
 
@@ -202,15 +173,6 @@ The system categorizes each claim based on comparing the benefit amount with the
 -   **BALANCED**: `benefit_amount == total_transaction_value`
 -   **OVERPAID**: `total_transaction_value > benefit_amount`
 -   **UNDERPAID**: `total_transaction_value < benefit_amount`
-
-### Financial Analysis
-
-The report includes comprehensive financial analysis:
-
--   Total amounts overpaid and underpaid
--   Percentage breakdown of each status category
--   Net variance calculations
--   Actionable insights for follow-up
 
 ## Troubleshooting
 
@@ -240,13 +202,6 @@ python src/main.py
 # Check directory permissions or run as administrator
 # The script automatically creates the output directory if it doesn't exist
 ```
-
-## Performance Notes
-
--   The system uses Polars for high-performance data processing
--   Typical processing time: ~2-5 seconds for 200 patients (2,000+ claims)
--   Memory usage scales linearly with the number of patients
--   HTML report generation includes base64-encoded images for offline viewing
 
 ## Customization
 
